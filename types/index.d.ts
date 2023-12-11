@@ -77,3 +77,63 @@ export enum CodecErrorCode {
    */
   CheckError = 10002,
 }
+
+
+
+export declare class SdpUtil {
+
+  readonly sdp: string;
+
+  init (sdp: string): void;
+
+  getMlineInfo(): MlineInfo[];
+}
+
+export interface HeaderExtension {
+  id: number;
+  uri: string;
+}
+
+export const enum Direction {
+  SendOnly = 'sendonly',
+  RecvOnly = 'recvonly',
+  SendRecv = 'sendrecv',
+  Unknown = 'unknown',
+}
+
+export interface MlineInfo {
+  readonly directron: Direction;
+  readonly mid: number;
+  readonly headerExtensions: HeaderExtension[];
+  readonly codecs: VideoCodecInfo[];
+}
+
+export interface VideoEncoderInfo {
+  headerExtension: HeaderExtension[];
+  codecs: VideoCodecInfo[];
+}
+
+export interface VideoDecoderInfo {
+  headerExtension: HeaderExtension[];
+  codecs: VideoCodecInfo[];
+}
+
+export interface AudioCodecInfo {
+
+}
+
+export interface VideoCodecInfo {
+  clockRate: number;
+  codec: VideoCodec;
+  payloadType: number;
+  profile_level_id: string; 
+}
+
+export const enum VideoCodec {
+  H264 = 'H264',
+  H265 = 'H265',
+  VP8 = 'VP8',
+  VP9 = 'VP9',
+  AV1 = 'AV1',
+
+}
