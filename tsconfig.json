@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5" ,
+    "module": "commonjs" ,
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "ES2015.Promise"
+    ],
+    "types": ["jest"],
+    "strict": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@types/*": [
+        "types/*"
+      ],
+    }
+  }
+}
