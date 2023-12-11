@@ -1,5 +1,8 @@
 # webrtc相关单元测试
 
+### 1.0.2
+  1. 修复导出SdpUtil错误
+
 ### 1.0.1
   1. 增加SdpUtil,用于解析sdp格式，暂时只支持了unified-plan格式下的视频格式解析
 

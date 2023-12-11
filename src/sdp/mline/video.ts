@@ -1,4 +1,4 @@
-import { Direction, MlineInfo, VideoCodec, VideoCodecInfo } from "../../../types/index";
+import { AudioCodecInfo, Direction, MlineInfo, VideoCodec, VideoCodecInfo } from "../../../types/index";
 import { MLine, MLineType, SDP_LINE_HEAD } from "./mline";
 
 export class Video extends MLine {
@@ -7,6 +7,19 @@ export class Video extends MLine {
     super(type, mLineStr);
 
     this.parseVideoInfo(mLineStr.split('\r\n'));
+  }
+
+  public removeCodec(codec: VideoCodecInfo | AudioCodecInfo): boolean {
+    if (9000 === codec.clockRate) {
+      const c: VideoCodecInfo = codec as VideoCodecInfo;
+      for (let i = 0; i < this.codecArr.length; ++i) {
+        if (this.codecArr[i].codec === c.codec && this.codecArr[i].payloadType === c.payloadType && this.codecArr[i].profile_level_id === c.profile_level_id) {
+          
+          return true;
+        }
+      }
+    }
+    return false
   }
 
   /**

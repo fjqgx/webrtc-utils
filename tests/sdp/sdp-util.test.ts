@@ -13,6 +13,7 @@ describe('test index.ts', () => {
     const info: MlineInfo = mlineArr[0]; 
     expect(info.mid).toBe(0);
     expect(info.directron).toBe(Direction.SendRecv);
+    expect(util.sdp).toBe(Unified_Plan_Windows_Sdp.Chrome_118_SendRecv_Video);
   })
 
   test ("test-unified-plan-recvonly", () => {

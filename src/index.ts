@@ -5,16 +5,15 @@ import { SdpUtil } from "./sdp/sdp-util";
 
 declare global {
   interface Window {
-    DecoderManager: DecoderManager;
-    EncoderManager: EncoderManager;
-    SdpUtil: SdpUtil;
+    DecoderManager: any;
+    EncoderManager: any;
+    SdpUtil: any;
   }
 }
 
 if (window) {
   window.DecoderManager = DecoderManager;
   window.EncoderManager = EncoderManager;
-  // @ts-ignore
   window.SdpUtil = SdpUtil;
 }
 

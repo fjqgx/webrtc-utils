@@ -50,6 +50,8 @@ export abstract class MLine implements MlineInfo {
     return this.headerExtensionArr;
   }
 
+  abstract removeCodec(codec: VideoCodecInfo | AudioCodecInfo): boolean;
+
   /**
    * uinfied-plan格式根据mline的第一行解析当前mline的payloadType
    * @param line 

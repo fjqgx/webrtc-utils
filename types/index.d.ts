@@ -17,6 +17,15 @@ export declare class EncoderManager {
   static isSupported(info: CodecInfo): Promise<SupportResult>;
 }
 
+export declare class SdpUtil {
+
+  readonly sdp: string;
+
+  public init (sdp: string): void;
+
+  public getMlineInfo(): MlineInfo[];
+}
+
 
 export const enum CodecName {
   H264 = 0,
@@ -61,7 +70,7 @@ export interface SupportResult {
 /**
  * 解码器能力检测错误码
  */
-export enum CodecErrorCode {
+export const enum CodecErrorCode {
   /**
    * 当前环境不支持判断，目前需要Chrome 94版本以上才能支持判断
    */
@@ -80,14 +89,6 @@ export enum CodecErrorCode {
 
 
 
-export declare class SdpUtil {
-
-  readonly sdp: string;
-
-  init (sdp: string): void;
-
-  getMlineInfo(): MlineInfo[];
-}
 
 export interface HeaderExtension {
   id: number;
@@ -106,6 +107,8 @@ export interface MlineInfo {
   readonly mid: number;
   readonly headerExtensions: HeaderExtension[];
   readonly codecs: VideoCodecInfo[];
+
+  removeCodec(codec: VideoCodecInfo | AudioCodecInfo): boolean;
 }
 
 export interface VideoEncoderInfo {
@@ -119,7 +122,7 @@ export interface VideoDecoderInfo {
 }
 
 export interface AudioCodecInfo {
-
+  clockRate: number;
 }
 
 export interface VideoCodecInfo {
