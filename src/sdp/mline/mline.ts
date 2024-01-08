@@ -29,6 +29,8 @@ export abstract class MLine implements MlineInfo {
 
   protected headerExtensionArr: HeaderExtension[] = [];
 
+  protected sdpArr: string[] = [];
+
   constructor (type: MLineType, mLineStr: string) {
     this.type = type;
     this.mLineDirection = Direction.Unknown;
@@ -48,6 +50,10 @@ export abstract class MLine implements MlineInfo {
 
   get headerExtensions(): HeaderExtension[] {
     return this.headerExtensionArr;
+  }
+
+  get sdpStr(): string {
+    return this.sdpArr.join('\r\n');
   }
 
   abstract removeCodec(codec: VideoCodecInfo | AudioCodecInfo): boolean;

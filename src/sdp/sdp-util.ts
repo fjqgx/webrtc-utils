@@ -5,42 +5,45 @@ import { Video } from "./mline/video";
 
 export class SdpUtil {
 
-  protected sdpArr: string[];
+  protected headArr: string[];
 
   protected mlineArr: MLine[];
 
 
   constructor () {
-    this.sdpArr = [];
+    this.headArr = [];
     this.mlineArr = [];
   }
 
   public init (sdpStr: string): void {
-    this.sdpArr = sdpStr.split('\r\n');
-    this.parseSdp(sdpStr);
-  }
-
-  get sdp (): string {
-    return this.sdpArr.join('\r\n');
-  }
-
-  public getMlineInfo(): MlineInfo[] {
-    return this.mlineArr;
-  }
-
-  protected parseSdp (sdp: string): void {
     this.mlineArr.splice(0);
-    let arr: string[] = sdp.split('m=');
+    let arr: string[] = sdpStr.split('m=');
+    console.log(arr.length);
+    this.headArr = arr[0].split('\r\n');
     if (arr.length > 1) {
       for (let i = 1; i < arr.length; ++i) {
         if (0 === arr[i].indexOf(MLineType.Audio)) {
           // this.mlineArr.push(new MLine(MLineType.Audio, arr[i]));
         } else if (0 === arr[i].indexOf(MLineType.Video)) {
-          this.mlineArr.push(new Video(MLineType.Video, arr[i]));
+          this.mlineArr.push(new Video(MLineType.Video, 'm=' + arr[i]));
         } else if (0 === arr[i].indexOf(MLineType.DataChannel)) {
           // this.mlineArr.push(new MLine(MLineType.DataChannel, arr[i]));
         }
       }
     }
   }
+
+  get sdp (): string {
+    let sdpStr: string = this.headArr.join('\r\n');
+    for (let i = 0; i < this.mlineArr.length; ++i) {
+      sdpStr += this.mlineArr[i].sdpStr;
+    }
+    return sdpStr;
+  }
+
+  public getMlineInfo(): MlineInfo[] {
+    return this.mlineArr;
+  }
+
+ 
 }
