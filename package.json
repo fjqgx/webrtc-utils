@@ -1,6 +1,6 @@
 {
   "name": "webrtc-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "utils for webrtc",
   "main": "./dist/webrtc-utils.js",
   "scripts": {

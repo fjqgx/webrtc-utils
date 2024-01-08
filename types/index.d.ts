@@ -88,8 +88,6 @@ export const enum CodecErrorCode {
 }
 
 
-
-
 export interface HeaderExtension {
   id: number;
   uri: string;
@@ -139,4 +137,33 @@ export const enum VideoCodec {
   VP9 = 'VP9',
   AV1 = 'AV1',
 
+}
+
+/////////////////////WhepPlayer//////////////////////
+
+export const enum MediaType {
+  Audio = 1,
+  Video,
+  Both,
+}
+
+export const enum WhepPlayerErrorCode {
+  NotSupportWebRTC = 1001,
+  WebRTCError = 1002,
+  CodecError = 1003,
+}
+
+export interface WhepPlayerConfig {
+  mediaType: MediaType;
+  headers: any;
+  videoCodecs?: VideoCodec[];
+}
+
+export interface WhepResponse {
+  code: number;
+  message: string;
+  answer: {
+    type: 'answer',
+    sdp: string,
+  }
 }
