@@ -141,12 +141,6 @@ export const enum VideoCodec {
 
 /////////////////////WhepPlayer//////////////////////
 
-export const enum MediaType {
-  Audio = 1,
-  Video,
-  Both,
-}
-
 export const enum WhepPlayerErrorCode {
   NotSupportWebRTC = 1001,
   WebRTCError = 1002,
@@ -154,16 +148,10 @@ export const enum WhepPlayerErrorCode {
 }
 
 export interface WhepPlayerConfig {
-  mediaType: MediaType;
   headers: any;
-  videoCodecs?: VideoCodec[];
 }
 
-export interface WhepResponse {
-  code: number;
-  message: string;
-  answer: {
-    type: 'answer',
-    sdp: string,
-  }
+export declare class WhepPlayer {
+  
+  play (url: string, config?: WhepPlayerConfig): Promise<MediaStream>;
 }
