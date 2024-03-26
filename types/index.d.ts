@@ -154,4 +154,6 @@ export interface WhepPlayerConfig {
 export declare class WhepPlayer {
   
   play (url: string, config?: WhepPlayerConfig): Promise<MediaStream>;
+
+  stop (): void;
 }
